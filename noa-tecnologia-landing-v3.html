@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOA Tecnología — Herramientas para hacer crecer tu negocio</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --azul-noa: #1E3A5F;
+            --naranja-sol: #E85D04;
+            --crema: #FDF8F3;
+            --texto: #2D3748;
+            --verde: #38A169;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--crema);
+            color: var(--texto);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(253, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--azul-noa);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--naranja-sol);
+        }
+        
+        .cta-header {
+            background: var(--naranja-sol);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.3);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(30, 58, 95, 0.1);
+            color: var(--azul-noa);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--azul-noa);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 em {
+            font-style: italic;
+            color: var(--naranja-sol);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--azul-noa);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background: #15294a;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(30, 58, 95, 0.25);
+        }
+        
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+        
+        /* Problema Section */
+        .problema {
+            padding: 6rem 5%;
+            background: white;
+        }
+        
+        .problema-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .problema-card {
+            background: var(--crema);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .problema-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--naranja-sol);
+        }
+        
+        .problema-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--azul-noa);
+            margin-bottom: 1rem;
+        }
+        
+        .problema-card p {
+            color: #64748b;
+        }
+        
+        /* Soluciones */
+        .soluciones {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--azul-noa);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .solucion-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        .solucion-item:nth-child(even) {
+            direction: rtl;
+        }
+        
+        .solucion-item:nth-child(even) > * {
+            direction: ltr;
+        }
+        
+        .solucion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .solucion-numero {
+            font-family: 'DM Serif Display', serif;
+            font-size: 5rem;
+            color: rgba(30, 58, 95, 0.1);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .solucion-content h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--azul-noa);
+            margin-bottom: 1rem;
+        }
+        
+        .solucion-content p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solucion-beneficio {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--verde);
+            font-weight: 500;
+        }
+        
+        .solucion-visual {
+            background: linear-gradient(135deg, var(--azul-noa) 0%, #2d5a8a 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solucion-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        
+        .chat-demo {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .chat-msg {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .chat-msg.user {
+            justify-content: flex-end;
+        }
+        
+        .chat-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .chat-msg.user .chat-bubble {
+            background: var(--naranja-sol);
+            border-bottom-right-radius: 4px;
+        }
+        
+        .chat-msg.bot .chat-bubble {
+            background: rgba(255,255,255,0.2);
+            border-bottom-left-radius: 4px;
+        }
+        
+        /* Servicios Grid */
+        .servicios {
+            padding: 6rem 5%;
+            background: white;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .servicio-card {
+            background: var(--crema);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+        
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 58, 95, 0.1);
+        }
+        
+        .servicio-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--azul-noa) 0%, #2d5a8a 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .servicio-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.25rem;
+            color: var(--azul-noa);
+            margin-bottom: 0.5rem;
+        }
+        
+        .servicio-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        
+        /* Precios */
+        .precios {
+            padding: 6rem 5%;
+            background: var(--azul-noa);
+            color: white;
+        }
+        
+        .precios .section-header h2 {
+            color: white;
+        }
+        
+        .precios .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .precio-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .precio-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .precio-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .precio-card.destacado {
+            background: var(--naranja-sol);
+            border-color: var(--naranja-sol);
+            transform: scale(1.05);
+        }
+        
+        .precio-card.destacado:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .precio-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .precio-card .precio {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+        }
+        
+        .precio-card .precio span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+        
+        .precio-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .precio-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .precio-card li::before {
+            content: '✓';
+            color: var(--verde);
+        }
+        
+        .precio-card.destacado li::before {
+            color: white;
+        }
+        
+        .btn-precio {
+            display: block;
+            padding: 1rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .precio-card .btn-precio {
+            background: white;
+            color: var(--azul-noa);
+        }
+        
+        .precio-card.destacado .btn-precio {
+            background: var(--azul-noa);
+            color: white;
+        }
+        
+        /* Testimonios placeholder */
+        .testimonios {
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        
+        .testimonios-placeholder {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, rgba(232, 93, 4, 0.05) 100%);
+            border-radius: 20px;
+            padding: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonios-placeholder h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--azul-noa);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonios-placeholder p {
+            color: #64748b;
+        }
+        
+        /* CTA Final */
+        .cta-final {
+            padding: 6rem 5%;
+            text-align: center;
+            background: var(--crema);
+        }
+        
+        .cta-final h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--azul-noa);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-final p {
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #25D366;
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--azul-noa);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        footer .logo {
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .solucion-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .solucion-item:nth-child(even) {
+                direction: ltr;
+            }
+            
+            .precio-card.destacado {
+                transform: none;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-badge {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">NOA<span>.</span></a>
+        <a href="#contacto" class="cta-header">Hablemos →</a>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">📍 Tartagal, Salta</span>
+            <h1>Más ventas. Menos trabajo. <em>Resultados reales.</em></h1>
+            <p class="hero-subtitle">Creamos herramientas digitales a medida para que tu negocio venda más, atienda mejor y crezca sin límites.</p>
+            <a href="#soluciones" class="hero-cta">
+                Ver qué hacemos
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+    
+    <section class="problema">
+        <div class="problema-grid">
+            <div class="problema-card">
+                <h3>Perdés clientes por no contestar a tiempo</h3>
+                <p>Mientras atendés a uno, otros 20 te escriben. Cada mensaje sin responder es una venta que se va a la competencia.</p>
+            </div>
+            <div class="problema-card">
+                <h3>Hacés todo manual y te consume el día</h3>
+                <p>Anotar pedidos, pasar datos, organizar información... Tareas repetitivas que te roban horas que podrías usar para vender más.</p>
+            </div>
+            <div class="problema-card">
+                <h3>Tu negocio no tiene presencia digital</h3>
+                <p>Sin una página web o un sistema propio, dependés de redes sociales que no controlás. Y perdés credibilidad frente a la competencia.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="soluciones" id="soluciones">
+        <div class="section-header">
+            <h2>Soluciones que funcionan</h2>
+            <p>Herramientas simples que resuelven problemas reales.</p>
+        </div>
+        
+        <div class="solucion-item">
+            <div class="solucion-content">
+                <div class="solucion-numero">01</div>
+                <h3>Atención automática por WhatsApp</h3>
+                <p>Tu negocio atiende consultas, toma pedidos y responde preguntas las 24 horas. Vos solo intervenís cuando hace falta algo especial.</p>
+                <div class="solucion-beneficio">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    100% de mensajes respondidos, siempre
+                </div>
+            </div>
+            <div class="solucion-visual">
+                <div class="chat-demo">
+                    <div class="chat-msg user">
+                        <div class="chat-bubble">Hola, ¿tienen empanadas de carne?</div>
+                    </div>
+                    <div class="chat-msg bot">
+                        <div class="chat-bubble">¡Hola! Sí, tenemos empanadas de carne, pollo y jamón y queso. ¿Querés hacer un pedido? 🥟</div>
+                    </div>
+                    <div class="chat-msg user">
+                        <div class="chat-bubble">Dale, 6 de carne</div>
+                    </div>
+                    <div class="chat-msg bot">
+                        <div class="chat-bubble">Perfecto, 6 empanadas de carne. ¿Es para delivery o retirás? 📍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="solucion-item">
+            <div class="solucion-content">
+                <div class="solucion-numero">02</div>
+                <h3>Tu propia página web profesional</h3>
+                <p>Una web moderna que muestra tu negocio, tus productos o servicios, y permite que tus clientes te contacten fácil. Tu espacio propio en internet.</p>
+                <div class="solucion-beneficio">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Presencia profesional las 24 horas
+                </div>
+            </div>
+            <div class="solucion-visual">
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="display: flex; gap: 0.25rem;">
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #ff5f57;"></div>
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #ffbd2e;"></div>
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #28ca42;"></div>
+                        </div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.1); border-radius: 4px; padding: 0.25rem 0.5rem; font-size: 0.7rem; opacity: 0.7;">tunegocio.com</div>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">Mi Negocio</div>
+                        <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem;">Los mejores productos de la zona</div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <div style="background: var(--naranja-sol); padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.8rem;">Ver productos</div>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.8rem;">Contactar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="solucion-item">
+            <div class="solucion-content">
+                <div class="solucion-numero">03</div>
+                <h3>Sistemas de gestión a medida</h3>
+                <p>Control de stock, pedidos, clientes, turnos, ventas... Lo que tu negocio necesite para funcionar mejor, lo construimos para vos.</p>
+                <div class="solucion-beneficio">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Todo organizado en un solo lugar
+                </div>
+            </div>
+            <div class="solucion-visual">
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.8rem;">
+                        <span style="opacity: 0.7;">Panel de Control</span>
+                        <span style="color: var(--verde);">● En línea</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700;">156</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7;">Productos</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700;">23</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7;">Pedidos hoy</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: #38A169;">$847k</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7;">Ventas mes</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--naranja-sol);">5</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7;">Stock bajo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Nueva sección: Más servicios -->
+    <section class="servicios" id="servicios">
+        <div class="section-header">
+            <h2>¿Qué más podemos hacer?</h2>
+            <p>Si tu negocio tiene un problema, probablemente tengamos la solución.</p>
+        </div>
+        
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-icon">🌐</div>
+                <h3>Páginas Web</h3>
+                <p>Desde una web simple hasta una tienda online completa. Tu negocio visible para todos.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">📦</div>
+                <h3>Control de Inventario</h3>
+                <p>Sabé qué tenés, qué falta y qué se vende más. Sin planillas complicadas.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">📱</div>
+                <h3>Aplicaciones a Medida</h3>
+                <p>Si necesitás algo específico que no existe, lo creamos para vos.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">📊</div>
+                <h3>Reportes y Números</h3>
+                <p>Gráficos claros que te muestran cómo va tu negocio. Decisiones con información real.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">🎓</div>
+                <h3>Plataformas de Cursos</h3>
+                <p>¿Querés enseñar online? Creamos tu espacio con videos, materiales y seguimiento de alumnos.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">📅</div>
+                <h3>Sistema de Turnos</h3>
+                <p>Tus clientes reservan solos, vos recibís el aviso. Ideal para consultorios, peluquerías, talleres.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">🛒</div>
+                <h3>Tienda Online</h3>
+                <p>Vendé por internet con catálogo, carrito y pagos. Tu negocio abierto 24/7.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">⚡</div>
+                <h3>Automatizaciones</h3>
+                <p>Esas tareas que hacés todos los días igual... las hacemos automáticas.</p>
+            </div>
+            
+            <div class="servicio-card">
+                <div class="servicio-icon">💬</div>
+                <h3>Asistentes Inteligentes</h3>
+                <p>Atención personalizada para tus clientes que aprende de tu negocio.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="precios" id="precios">
+        <div class="section-header">
+            <h2>Precios claros, sin letra chica</h2>
+            <p>Pagás mientras te sirve. Sin contratos largos.</p>
+        </div>
+        
+        <div class="precio-cards">
+            <div class="precio-card">
+                <h3>WhatsApp Atención</h3>
+                <div class="precio">$35.000<span>/mes</span></div>
+                <ul>
+                    <li>Respuestas automáticas 24/7</li>
+                    <li>Preguntas frecuentes</li>
+                    <li>Envío de menú/catálogo</li>
+                    <li>Soporte incluido</li>
+                </ul>
+                <a href="#contacto" class="btn-precio">Consultar</a>
+            </div>
+            
+            <div class="precio-card destacado">
+                <h3>Negocio Completo</h3>
+                <div class="precio">$65.000<span>/mes</span></div>
+                <ul>
+                    <li>WhatsApp Atención +</li>
+                    <li>Sistema de pedidos</li>
+                    <li>Reportes semanales</li>
+                    <li>Soporte prioritario</li>
+                </ul>
+                <a href="#contacto" class="btn-precio">El más elegido</a>
+            </div>
+            
+            <div class="precio-card">
+                <h3>Proyecto a Medida</h3>
+                <div class="precio">A cotizar</div>
+                <ul>
+                    <li>Web, app o sistema</li>
+                    <li>Diseño personalizado</li>
+                    <li>Implementación completa</li>
+                    <li>Soporte continuo</li>
+                </ul>
+                <a href="#contacto" class="btn-precio">Hablemos</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonios">
+        <div class="testimonios-placeholder">
+            <h3>🚀 Buscamos los primeros 5 negocios</h3>
+            <p>Queremos probar nuestras herramientas con negocios de Tartagal. Si sos uno de los primeros 5, tenés <strong>50% de descuento</strong> los primeros 3 meses. Solo pedimos que nos cuentes cómo te fue.</p>
+        </div>
+    </section>
+    
+    <section class="cta-final" id="contacto">
+        <h2>¿Tenés un problema en tu negocio?</h2>
+        <p>Contanos qué necesitás. En 15 minutos te decimos si podemos ayudarte y cómo.</p>
+        <a href="https://wa.me/54XXXXXXXXXX?text=Hola,%20vi%20la%20web%20de%20NOA%20Tecnología%20y%20quiero%20saber%20más" class="whatsapp-btn">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribinos por WhatsApp
+        </a>
+    </section>
+    
+    <footer>
+        <a href="#" class="logo">NOA<span>.</span></a>
+        <p>Herramientas digitales para negocios que quieren crecer</p>
+        <p style="margin-top: 0.5rem;">Tartagal, Salta — Argentina</p>
+    </footer>
+</body>
+</html>
