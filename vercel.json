@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/terminos", "destination": "/terminos.html" },
+    { "source": "/privacidad", "destination": "/privacidad.html" }
+  ],
+  "cleanUrls": true
+}
