@@ -26,7 +26,8 @@
             --verde: #86EFAC;
             --verde-soft: rgba(134, 239, 172, 0.1);
             --verde-glow: rgba(134, 239, 172, 0.3);
-            --gris: #888;
+            --gris: #a3a3a3; /* Cambiado de #888 a #a3a3a3 para mejor contraste */
+            --gris-claro: #d4d4d4; /* Nuevo gris más claro para textos secundarios */
             --blanco: #fafafa;
         }
         
@@ -116,6 +117,16 @@
             transform: translateY(-2px);
         }
         
+        .cta-header:focus {
+            outline: 2px solid #86EFAC;
+            outline-offset: 2px;
+        }
+        
+        /* Main content */
+        main {
+            display: block;
+        }
+        
         /* Hero */
         .hero {
             min-height: 100vh;
@@ -171,10 +182,10 @@
         
         .hero-sub {
             font-size: clamp(1rem, 3vw, 1.25rem);
-            color: #888;
+            color: var(--gris-claro);
             max-width: 550px;
             margin-bottom: 2.5rem;
-            font-weight: 300;
+            font-weight: 400;
             padding: 0 1rem;
         }
         
@@ -197,6 +208,11 @@
             transform: translateY(-3px);
         }
         
+        .hero-cta:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
         .hero-cta svg {
             width: 20px;
             height: 20px;
@@ -217,7 +233,7 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            color: #888;
+            color: var(--gris);
             font-size: 0.8rem;
         }
         
@@ -241,6 +257,11 @@
             }
         }
         
+        /* Sections */
+        section {
+            scroll-margin-top: 80px;
+        }
+        
         /* Problema Section */
         .problema {
             padding: 5rem 5%;
@@ -259,7 +280,7 @@
         }
         
         .problema-header p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 1rem;
             max-width: 500px;
             margin: 0 auto;
@@ -298,7 +319,7 @@
         }
         
         .problema-card p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 0.9rem;
             line-height: 1.6;
         }
@@ -326,10 +347,10 @@
         }
         
         .solucion > .solucion-content > p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 1.1rem;
             margin-bottom: 3rem;
-            font-weight: 300;
+            font-weight: 400;
         }
         
         /* Herramientas */
@@ -373,14 +394,14 @@
             font-size: 1.2rem;
         }
         
-        .herramienta h4 {
+        .herramienta h3 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.4rem;
         }
         
         .herramienta p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 0.85rem;
             line-height: 1.5;
         }
@@ -443,14 +464,14 @@
             margin: 0 auto 1.25rem;
         }
         
-        .step h4 {
+        .step h3 {
             font-size: 1.05rem;
             font-weight: 600;
             margin-bottom: 0.4rem;
         }
         
         .step p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 0.9rem;
         }
         
@@ -482,7 +503,7 @@
         }
         
         .cta-final > p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 1rem;
             margin-bottom: 2rem;
             position: relative;
@@ -508,6 +529,11 @@
             box-shadow: 0 20px 40px rgba(37, 211, 102, 0.3);
         }
         
+        .whatsapp-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
         .whatsapp-btn svg {
             width: 22px;
             height: 22px;
@@ -526,7 +552,7 @@
         }
         
         footer p {
-            color: #888;
+            color: var(--gris-claro);
             font-size: 0.85rem;
         }
         
@@ -536,14 +562,32 @@
         }
         
         footer .legal-links a {
-            color: #666;
+            color: var(--gris);
             text-decoration: none;
             margin: 0 0.75rem;
             transition: color 0.3s;
         }
         
-        footer .legal-links a:hover {
+        footer .legal-links a:hover,
+        footer .legal-links a:focus {
             color: #86EFAC;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #86EFAC;
+            color: #0a0a0a;
+            padding: 8px 16px;
+            z-index: 1000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 0;
         }
         
         /* Animations on scroll */
@@ -557,14 +601,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Focus visible for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #86EFAC;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
-    <div class="cursor-glow" id="cursorGlow"></div>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     
-    <header>
-        <a href="/" class="logo">
-            <svg viewBox="0 0 200 200">
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+    
+    <header role="banner">
+        <a href="/" class="logo" aria-label="NOA Tecnología - Inicio">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
                 <defs>
                     <filter id="glow">
                         <feGaussianBlur stdDeviation="2" result="blur"/>
@@ -579,116 +632,120 @@
             </svg>
             NOA Tecnología
         </a>
-        <a href="#contacto" class="cta-header">Hablemos</a>
+        <nav role="navigation">
+            <a href="#contacto" class="cta-header">Hablemos</a>
+        </nav>
     </header>
     
-    <section class="hero">
-        <div class="hero-label">
-            <span></span>
-            Tartagal, Salta
-        </div>
-        <h1>Construimos <span class="highlight">herramientas</span> para tu negocio</h1>
-        <p class="hero-sub">Soluciones simples que te ayudan a vender más, atender mejor y trabajar menos.</p>
-        <a href="#contacto" class="hero-cta">
-            Quiero saber más
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-        </a>
-        <div class="scroll-indicator">
-            <div class="line"></div>
-        </div>
-    </section>
-    
-    <section class="problema">
-        <div class="problema-header fade-up">
-            <h2>¿Te suena familiar?</h2>
-            <p>Problemas comunes que resolvemos todos los días.</p>
-        </div>
-        <div class="problema-grid">
-            <div class="problema-card fade-up">
-                <div class="icon">💬</div>
-                <h3>Mensajes sin contestar</h3>
-                <p>Te escriben por WhatsApp y no das abasto. Cada mensaje sin responder es un cliente que se va.</p>
+    <main id="main-content" role="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-label">
+                <span aria-hidden="true"></span>
+                Tartagal, Salta
             </div>
-            <div class="problema-card fade-up">
-                <div class="icon">📝</div>
-                <h3>Todo es manual</h3>
-                <p>Anotar pedidos, pasar datos, organizar información. Tareas repetitivas que te consumen el día.</p>
+            <h1 id="hero-title">Construimos <span class="highlight">herramientas</span> para tu negocio</h1>
+            <p class="hero-sub">Soluciones simples que te ayudan a vender más, atender mejor y trabajar menos.</p>
+            <a href="#contacto" class="hero-cta">
+                Quiero saber más
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+            <div class="scroll-indicator" aria-hidden="true">
+                <div class="line"></div>
             </div>
-            <div class="problema-card fade-up">
-                <div class="icon">🌐</div>
-                <h3>Sin presencia online</h3>
-                <p>No tenés página web ni sistemas propios. Tu competencia sí. Perdés credibilidad y clientes.</p>
+        </section>
+        
+        <section class="problema" aria-labelledby="problema-title">
+            <div class="problema-header fade-up">
+                <h2 id="problema-title">¿Te suena familiar?</h2>
+                <p>Problemas comunes que resolvemos todos los días.</p>
             </div>
-        </div>
-    </section>
-    
-    <section class="solucion">
-        <div class="solucion-content">
-            <h2 class="fade-up">Nosotros lo <span class="highlight">resolvemos</span></h2>
-            <p class="fade-up">Creamos herramientas a medida para que tu negocio funcione mejor.</p>
-            
-            <div class="herramientas">
-                <div class="herramienta fade-up">
-                    <div class="herramienta-icon">💬</div>
-                    <h4>Atención automática</h4>
-                    <p>Tu WhatsApp responde solo. Toma pedidos, contesta preguntas, envía información. 24/7.</p>
+            <div class="problema-grid">
+                <article class="problema-card fade-up">
+                    <div class="icon" aria-hidden="true">💬</div>
+                    <h3>Mensajes sin contestar</h3>
+                    <p>Te escriben por WhatsApp y no das abasto. Cada mensaje sin responder es un cliente que se va.</p>
+                </article>
+                <article class="problema-card fade-up">
+                    <div class="icon" aria-hidden="true">📝</div>
+                    <h3>Todo es manual</h3>
+                    <p>Anotar pedidos, pasar datos, organizar información. Tareas repetitivas que te consumen el día.</p>
+                </article>
+                <article class="problema-card fade-up">
+                    <div class="icon" aria-hidden="true">🌐</div>
+                    <h3>Sin presencia online</h3>
+                    <p>No tenés página web ni sistemas propios. Tu competencia sí. Perdés credibilidad y clientes.</p>
+                </article>
+            </div>
+        </section>
+        
+        <section class="solucion" aria-labelledby="solucion-title">
+            <div class="solucion-content">
+                <h2 id="solucion-title" class="fade-up">Nosotros lo <span class="highlight">resolvemos</span></h2>
+                <p class="fade-up">Creamos herramientas a medida para que tu negocio funcione mejor.</p>
+                
+                <div class="herramientas">
+                    <article class="herramienta fade-up">
+                        <div class="herramienta-icon" aria-hidden="true">💬</div>
+                        <h3>Atención automática</h3>
+                        <p>Tu WhatsApp responde solo. Toma pedidos, contesta preguntas, envía información. 24/7.</p>
+                    </article>
+                    <article class="herramienta fade-up">
+                        <div class="herramienta-icon" aria-hidden="true">🌐</div>
+                        <h3>Páginas web</h3>
+                        <p>Tu negocio visible en internet. Profesional, moderna y que genera confianza.</p>
+                    </article>
+                    <article class="herramienta fade-up">
+                        <div class="herramienta-icon" aria-hidden="true">⚡</div>
+                        <h3>Automatizaciones</h3>
+                        <p>Las tareas repetitivas se hacen solas. Vos te enfocás en lo importante.</p>
+                    </article>
+                    <article class="herramienta fade-up">
+                        <div class="herramienta-icon" aria-hidden="true">📊</div>
+                        <h3>Sistemas a medida</h3>
+                        <p>Gestión de stock, pedidos, turnos, clientes. Lo que necesites, lo construimos.</p>
+                    </article>
                 </div>
-                <div class="herramienta fade-up">
-                    <div class="herramienta-icon">🌐</div>
-                    <h4>Páginas web</h4>
-                    <p>Tu negocio visible en internet. Profesional, moderna y que genera confianza.</p>
-                </div>
-                <div class="herramienta fade-up">
-                    <div class="herramienta-icon">⚡</div>
-                    <h4>Automatizaciones</h4>
-                    <p>Las tareas repetitivas se hacen solas. Vos te enfocás en lo importante.</p>
-                </div>
-                <div class="herramienta fade-up">
-                    <div class="herramienta-icon">📊</div>
-                    <h4>Sistemas a medida</h4>
-                    <p>Gestión de stock, pedidos, turnos, clientes. Lo que necesites, lo construimos.</p>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <section class="proceso" aria-labelledby="proceso-title">
+            <div class="proceso-header fade-up">
+                <h2 id="proceso-title">Así de simple</h2>
+            </div>
+            <div class="proceso-steps">
+                <article class="step fade-up">
+                    <div class="step-number" aria-hidden="true">1</div>
+                    <h3>Contanos tu problema</h3>
+                    <p>Nos escribís, charlamos 15 minutos y entendemos qué necesitás.</p>
+                </article>
+                <article class="step fade-up">
+                    <div class="step-number" aria-hidden="true">2</div>
+                    <h3>Te proponemos una solución</h3>
+                    <p>Diseñamos algo simple que resuelva tu problema. Sin vueltas.</p>
+                </article>
+                <article class="step fade-up">
+                    <div class="step-number" aria-hidden="true">3</div>
+                    <h3>Lo construimos y listo</h3>
+                    <p>En pocos días tenés tu herramienta funcionando.</p>
+                </article>
+            </div>
+        </section>
+        
+        <section class="cta-final" id="contacto" aria-labelledby="contacto-title">
+            <h2 id="contacto-title" class="fade-up">¿Tenés un problema?</h2>
+            <p class="fade-up">Contanos. Si podemos ayudarte, te lo decimos. Si no, también.</p>
+            <a href="https://wa.me/54XXXXXXXXXX?text=Hola,%20vi%20la%20web%20de%20NOA%20Tecnología" class="whatsapp-btn fade-up" aria-label="Escribinos por WhatsApp">
+                <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Escribinos por WhatsApp
+            </a>
+        </section>
+    </main>
     
-    <section class="proceso">
-        <div class="proceso-header fade-up">
-            <h2>Así de simple</h2>
-        </div>
-        <div class="proceso-steps">
-            <div class="step fade-up">
-                <div class="step-number">1</div>
-                <h4>Contanos tu problema</h4>
-                <p>Nos escribís, charlamos 15 minutos y entendemos qué necesitás.</p>
-            </div>
-            <div class="step fade-up">
-                <div class="step-number">2</div>
-                <h4>Te proponemos una solución</h4>
-                <p>Diseñamos algo simple que resuelva tu problema. Sin vueltas.</p>
-            </div>
-            <div class="step fade-up">
-                <div class="step-number">3</div>
-                <h4>Lo construimos y listo</h4>
-                <p>En pocos días tenés tu herramienta funcionando.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta-final" id="contacto">
-        <h2 class="fade-up">¿Tenés un problema?</h2>
-        <p class="fade-up">Contanos. Si podemos ayudarte, te lo decimos. Si no, también.</p>
-        <a href="https://wa.me/54XXXXXXXXXX?text=Hola,%20vi%20la%20web%20de%20NOA%20Tecnología" class="whatsapp-btn fade-up">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Escribinos por WhatsApp
-        </a>
-    </section>
-    
-    <footer>
-        <a href="/" class="logo">
-            <svg viewBox="0 0 200 200" style="width: 28px; height: 28px;">
+    <footer role="contentinfo">
+        <a href="/" class="logo" aria-label="NOA Tecnología - Inicio">
+            <svg viewBox="0 0 200 200" style="width: 28px; height: 28px;" aria-hidden="true">
                 <rect width="200" height="200" fill="#0a0a0a"/>
                 <path d="M25 160 L68 65 L88 92 L128 38 L175 160" fill="none" stroke="#86EFAC" stroke-width="10" stroke-linejoin="round"/>
                 <circle cx="128" cy="38" r="10" fill="#86EFAC"/>
@@ -696,11 +753,11 @@
             NOA Tecnología
         </a>
         <p>Herramientas para negocios que quieren crecer</p>
-        <p style="margin-top: 0.25rem; opacity: 0.6;">Tartagal, Salta — Argentina</p>
-        <p class="legal-links">
+        <p style="margin-top: 0.25rem; opacity: 0.8;">Tartagal, Salta — Argentina</p>
+        <nav class="legal-links" aria-label="Enlaces legales">
             <a href="/terminos">Términos y Condiciones</a>
             <a href="/privacidad">Política de Privacidad</a>
-        </p>
+        </nav>
     </footer>
     
     <script>
